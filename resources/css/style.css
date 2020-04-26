@@ -13,7 +13,7 @@ html {
 }
 
 body {
-  background-color: #303030;
+  background-color: rgb(75, 84, 94);
 }
 
 div {
@@ -49,5 +49,9 @@ div {
 }
 
 .third-header-word {
-
+  color: white;
+  background: url(../images/circuit-board/circuit-board.jpg);
+  background-size: 160%;
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
 }
