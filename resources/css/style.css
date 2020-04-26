@@ -13,7 +13,8 @@ html {
 }
 
 body {
-  background-color: rgb(75, 84, 94);
+  background-color: gray;
+  font-family: "Fira Code Bold";
 }
 
 div {
@@ -29,7 +30,6 @@ div {
 }
 
 .main-header {
-  font-family: "Fira Code Bold";
   font-size: 3rem;
   /*left: 0;
   line-height: 200px;
@@ -45,13 +45,28 @@ div {
 }
 
 .second-header-word {
-  color: red;
+  color: crimson;
 }
 
 .third-header-word {
   color: white;
   background: url(../images/circuit-board/circuit-board.jpg);
-  background-size: 160%;
+  background-size: 200%;
   -webkit-background-clip: text;
   -webkit-text-fill-color: transparent;
+}
+
+.begin {
+  background-color: inherit;
+  color: white;
+  border: 4px solid crimson;
+  font-family: inherit;
+  font-size: 2rem;
+  padding: 15px 32px;
+  border-radius: 8px;
+  transition-duration: 0.4s;
+}
+
+.begin:hover {
+  background-color: crimson;
 }
