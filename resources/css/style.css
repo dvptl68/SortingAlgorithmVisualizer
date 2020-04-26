@@ -1,6 +1,11 @@
 @font-face {
-  font-family: "Press Start 2P";
-  src: url(../fonts/Press_Start_2P/PressStart2P-Regular.ttf) format('truetype');
+  font-family: "Fira Code";
+  src: url(../fonts/Fira_Code/static/FiraCode-Regular.ttf) format('truetype');
+}
+
+@font-face {
+  font-family: "Fira Code Bold";
+  src: url(../fonts/Fira_Code/static/FiraCode-Bold.ttf) format('truetype');
 }
 
 html {
@@ -11,12 +16,8 @@ body {
   background-color: #303030;
 }
 
-div.header-div {
-  width = 100%;
-}
-
 .main-header {
-  font-family: "Press Start 2P";
+  font-family: "Fira Code Bold";
   text-align: center;
   min-width = 500;
 }
