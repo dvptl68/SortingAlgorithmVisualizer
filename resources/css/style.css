@@ -13,7 +13,7 @@ html {
 }
 
 body {
-  background-color: gray;
+  background-color: #B0B0B0;
   font-family: "Fira Code Bold";
 }
 
@@ -50,10 +50,6 @@ div {
 
 .third-header-word {
   color: white;
-  background: url(../images/circuit-board/circuit-board.jpg);
-  background-size: 200%;
-  -webkit-background-clip: text;
-  -webkit-text-fill-color: transparent;
 }
 
 .begin {
