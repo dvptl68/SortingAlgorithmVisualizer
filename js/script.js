@@ -1,4 +1,6 @@
-let g = document.getElementById('github');
+
+//Changes the GitHub logo color scheme on mouse hover/unhover
+let g = document.getElementsByClassName('github')[0];
 
 let hover = function() {
   g.style.backgroundColor = 'crimson';
