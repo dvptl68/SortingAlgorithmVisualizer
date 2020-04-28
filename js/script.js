@@ -29,6 +29,12 @@ let changePage = function() {
   title.style.marginLeft = '230px';
   title.style.top = '0';
   title.style.left = '0';
+  setTimeout(function(){
+    let data = document.getElementsByClassName('data')[0];
+    data.style.opacity = '100%';
+    let banner = document.getElementsByClassName('bottom-banner')[0];
+    banner.style.opacity = '100%';
+  }, 800);
 };
 
 begin.addEventListener('click', changePage);
