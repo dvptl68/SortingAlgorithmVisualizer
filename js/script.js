@@ -34,7 +34,9 @@ let changePage = function() {
     data.style.opacity = '100%';
     let banner = document.getElementsByClassName('bottom-banner')[0];
     banner.style.opacity = '100%';
-  }, 800);
+    banner.children[1].style.cursor = 'pointer';
+    banner.children[2].style.cursor = 'pointer';
+  }, 500);
 };
 
 begin.addEventListener('click', changePage);
