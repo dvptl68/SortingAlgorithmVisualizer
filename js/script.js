@@ -21,13 +21,14 @@ let begin = document.getElementsByClassName('begin')[0];
 
 let changePage = function() {
   let title = document.getElementsByClassName('center-welcome')[0];
+  title.removeChild(begin);
   let info = document.getElementsByClassName('info')[0];
-  title.style.opacity = '0';
-  info.style.opacity = '0';
-  setTimeout(function() {
-    title.style.display = 'none';
-    info.style.display = 'none';
-  }, 1000);
+  let header = document.getElementsByClassName('main-header')[0];
+  header.style.fontSize = '1.5rem';
+  title.style.marginTop = '40px';
+  title.style.marginLeft = '230px';
+  title.style.top = '0';
+  title.style.left = '0';
 };
 
 begin.addEventListener('click', changePage);
