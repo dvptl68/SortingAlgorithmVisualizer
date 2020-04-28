@@ -14,10 +14,10 @@ html {
 
 body {
   background-color: #B0B0B0;
-  font-family: "Fira Code Bold";
 }
 
 .center-welcome {
+  font-family: "Fira Code Bold";
   overflow: hidden;
   white-space: nowrap;
   text-align: center;
@@ -27,6 +27,7 @@ body {
   -moz-transform: translateX(-50%) translateY(-50%);
   -webkit-transform: translateX(-50%) translateY(-50%);
   transform: translateX(-50%) translateY(-50%);
+  transition: all 1s linear;
 }
 
 .info {
@@ -37,9 +38,11 @@ body {
   top:0;
   right:0;
   width: 250px;
+  transition: all 1s linear;
 }
 
 .name {
+  font-family: "Fira Code Bold";
   color:crimson;
   font-size: 1.5rem;
   display: inline-block;
@@ -84,3 +87,4 @@ body {
   cursor: pointer;
   background-color: crimson;
   color: #B0B0B0;
+}
