@@ -1,14 +1,10 @@
 <!DOCTYPE html>
 <html>
-
 <head>
   <title>Visualizer</title>
   <link href="css/style.css" type="text/css" rel="stylesheet">
-
 </head>
-
 <body>
-
   <div class="center-welcome">
     <p class="main-header">
       <span class="first-header-word">Sorting </span>
@@ -17,19 +13,18 @@
     </p>
     <button class="begin">Begin</button>
   </div>
-
   <div class="info">
     <p class="name">Dev Patel</p>
     <a href="https://github.com/dvptl68" target="_blank">
       <img src="images/crimson-logo.png" alt="GitHub" class="github">
     </a>
   </div>
-
   <div class="data"></div>
-  <div class="bottom-banner"></div>
-
+  <div class="bottom-banner">
+    <input type="range" min="30" max="300" value="165" class="slider">
+    <button class="sort">Sort</button>
+    <button class="random">Randomize</button>
+  </div>
   <script src="js/script.js" defer></script>
-
 </body>
-
 </html>
