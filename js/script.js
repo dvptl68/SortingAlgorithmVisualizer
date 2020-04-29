@@ -36,7 +36,7 @@ let changePage = function() {
     banner.style.opacity = '100%';
     banner.children[1].style.cursor = 'pointer';
     banner.children[2].style.cursor = 'pointer';
-  }, 500);
+  }, 800);
 };
 
 begin.addEventListener('click', changePage);

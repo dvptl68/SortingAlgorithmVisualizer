@@ -1,7 +1,7 @@
 <!DOCTYPE html>
 <html>
 <head>
-  <title>Visualizer</title>
+  <title>Sorting Algorithm Visualizer</title>
   <link href="css/style.css" type="text/css" rel="stylesheet">
 </head>
 <body>
@@ -21,7 +21,10 @@
   </div>
   <div class="data"></div>
   <div class="bottom-banner">
-    <input type="range" min="30" max="300" value="165" class="slider">
+    <div class="slider-box">
+      <input autocomplete="off" type="range" min="30" max="300" value="165" class="slider">
+      <p class="value">Size: <span id="number"></span></p>
+    </div>
     <button class="sort">Sort</button>
     <button class="random">Randomize</button>
   </div>
