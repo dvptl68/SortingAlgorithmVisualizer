@@ -193,9 +193,10 @@ body {
 }
 
 .value {
-  font-family: "Fira Code";
+  font-family: "Fira Code Bold";
   font-size: 1.6rem;
   color: crimson;
   padding: 0px;
   margin-top: 10px;
+  cursor: default;
 }

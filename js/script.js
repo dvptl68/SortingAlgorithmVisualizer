@@ -40,3 +40,11 @@ let changePage = function() {
 };
 
 begin.addEventListener('click', changePage);
+
+let slider = document.getElementsByClassName('slider')[0];
+let number = document.getElementById('number');
+number.innerHTML = slider.value;
+
+slider.oninput = function() {
+  number.innerHTML = this.value;
+}
