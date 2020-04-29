@@ -30,6 +30,8 @@ let changePage = function() {
   title.style.top = '0';
   title.style.left = '0';
   setTimeout(function(){
+    let sortTypes = document.getElementsByClassName('sort-types')[0];
+    sortTypes.style.opacity = '100%';
     let data = document.getElementsByClassName('data')[0];
     data.style.opacity = '100%';
     let banner = document.getElementsByClassName('bottom-banner')[0];
@@ -41,10 +43,11 @@ let changePage = function() {
 
 begin.addEventListener('click', changePage);
 
+//Changes the number display based on slider movement
 let slider = document.getElementsByClassName('slider')[0];
 let number = document.getElementById('number');
 number.innerHTML = slider.value;
 
 slider.oninput = function() {
   number.innerHTML = this.value;
-}
+};
