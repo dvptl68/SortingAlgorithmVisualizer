@@ -117,8 +117,20 @@ let changePage = function() {
 
 begin.addEventListener('click', changePage);
 
-//Enabled 'radio button' feature to sorting method buttons
+//Changes button color scheme on hover
 let sortButtons = document.getElementsByClassName('sort-button');
+let banner = document.getElementsByClassName('bottom-banner')[0];
+for (let i = 0; i < sortButtons.length; i++){
+  sortButtons.item(i).addEventListener('mouseenter', hoverButton);
+  sortButtons.item(i).addEventListener('mouseleave', unhoverButton);
+}
+for (let i = 1; i < banner.children.length; i++){
+  banner.children[i].addEventListener('mouseenter', hoverButtonBottom);
+  banner.children[i].addEventListener('mouseleave', unhoverButtonBottom);
+}
+
+
+//Enabled 'radio button' feature to sorting method buttons
 let selectedButton = 'bubble';
 
 function updateSortButtons(event){
@@ -129,25 +141,35 @@ function updateSortButtons(event){
     if (current.isSameNode(event.target)){
       current.style.color = '#B0B0B0';
       current.style.backgroundColor = 'crimson';
-      current.removeEventListener('mouseenter', hoverSort);
-      current.removeEventListener('mouseleave', unhoverSort);
+      current.removeEventListener('mouseenter', hoverButton);
+      current.removeEventListener('mouseleave', unhoverButton);
     }else{
       current.style.color = 'crimson';
       current.style.backgroundColor = '#B0B0B0';
-      current.addEventListener('mouseenter', hoverSort);
-      current.addEventListener('mouseleave', unhoverSort);
+      current.addEventListener('mouseenter', hoverButton);
+      current.addEventListener('mouseleave', unhoverButton);
     }
   }
 }
 
-function hoverSort(event) {
+function hoverButton(event) {
   event.target.style.color = '#B0B0B0';
   event.target.style.backgroundColor = 'crimson';
 }
 
-function unhoverSort(event) {
+function unhoverButton(event) {
   event.target.style.color = 'crimson';
   event.target.style.backgroundColor = '#B0B0B0';
+}
+
+function hoverButtonBottom(event){
+  event.target.style.color = '#919DAA';
+  event.target.style.backgroundColor = 'crimson';
+}
+
+function unhoverButtonBottom(event){
+  event.target.style.color = 'crimson';
+  event.target.style.backgroundColor = '#919DAA';
 }
 
 for (let i = 0; i < sortButtons.length; i++){
@@ -163,17 +185,24 @@ randomize.addEventListener('click', generateElements);
 let reverse = document.getElementsByClassName('reverse')[0];
 reverse.addEventListener('click', generateReverse);
 
-//Calls the correct sort method based on which button is pressed
+//Enables "sort" button
 let s = document.getElementsByClassName('sort')[0];
 s.addEventListener('click', sortCall);
 
+//Selects the proper sort method based on which sort button is pressed
 function sortCall(){
+  enableButtons(false);
+
   if (selectedButton === 'bubble'){
     bubbleSort();
     updateData();
   }
+  setTimeout(function(){
+    enableButtons(true);
+  }, 1000);
 }
 
+//Bubble sort algorithm
 function bubbleSort(){
   const n = arr.length;
   for (let i = 0; i < n - 1; i++){
@@ -184,5 +213,51 @@ function bubbleSort(){
         arr[j+1] = temp;
       }
     }
+  }
+}
+
+//Function to pause the program for visuals to take place
+function sleep(miliseconds) {
+   var currentTime = new Date().getTime();
+   while ((currentTime + miliseconds) >= new Date().getTime()) {
+   }
+}
+
+//Function to enable/disable all buttons for sorting to take place
+function enableButtons(enable){
+  if (enable){
+    for (let i = 0; i < sortButtons.length; i++){
+      sortButtons.item(i).disabled = false;
+      sortButtons.item(i).style.opacity = '100%';
+      sortButtons.item(i).style.cursor = 'pointer';
+      sortButtons.item(i).addEventListener('mouseenter', hoverButton);
+      sortButtons.item(i).addEventListener('mouseleave', unhoverButton);
+    }
+    for (let i = 1; i < banner.children.length; i++){
+      banner.children[i].disabled = false;
+      banner.children[i].style.opacity = '100%';
+      banner.children[i].style.cursor = 'pointer';
+      banner.children[i].addEventListener('mouseenter', hoverButtonBottom);
+      banner.children[i].addEventListener('mouseleave', unhoverButtonBottom);
+    }
+    banner.children[0].children[0].style.display = 'inline-block';
+  }else{
+    for (let i = 0; i < sortButtons.length; i++){
+      sortButtons.item(i).disabled = true;
+      sortButtons.item(i).style.opacity = '50%';
+      sortButtons.item(i).style.cursor = 'default';
+      sortButtons.item(i).removeEventListener('mouseenter', hoverButton);
+      sortButtons.item(i).removeEventListener('mouseleave', unhoverButton);
+    }
+    for (let i = 1; i < banner.children.length; i++){
+      banner.children[i].disabled = true;
+      banner.children[i].style.opacity = '50%';
+      banner.children[i].style.cursor = 'default';
+      banner.children[i].style.color = 'crimson';
+      banner.children[i].style.backgroundColor = '#919DAA';
+      banner.children[i].removeEventListener('mouseenter', hoverButtonBottom);
+      banner.children[i].removeEventListener('mouseleave', unhoverButtonBottom);
+    }
+    banner.children[0].children[0].style.display = 'none';
   }
 }

@@ -113,11 +113,6 @@ body {
   margin-top: 10px;
 }
 
-.sort-button:hover {
-  background-color: crimson;
-  color: #B0B0B0;
-}
-
 .data {
   overflow: hidden;
   white-space: nowrap;
@@ -161,11 +156,6 @@ body {
   margin-right: 5px;
 }
 
-.sort:hover {
-  background-color: crimson;
-  color: #919DAA;
-}
-
 .random {
   display: none;
   background-color: inherit;
@@ -178,11 +168,6 @@ body {
   transition-duration: 0.4s;
   margin-top: 12px;
   margin-left: 5px;
-}
-
-.random:hover {
-  background-color: crimson;
-  color: #919DAA;
 }
 
 .reverse {
@@ -199,14 +184,10 @@ body {
   margin-left: 5px;
 }
 
-.reverse:hover {
-  background-color: crimson;
-  color: #919DAA;
-}
-
 .slider-box {
   display: none;
   width: 450px;
+  height: auto;
   margin: 0px;
   margin-right: 5px;
 }
