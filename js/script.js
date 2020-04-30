@@ -15,10 +15,33 @@ let unhoverLogo = function() {
 g.addEventListener('mouseenter', hoverLogo);
 g.addEventListener('mouseleave', unhoverLogo);
 
+//Changes the number display based on slider movement
+let slider = document.getElementsByClassName('slider')[0];
+let number = document.getElementById('number');
+number.innerHTML = slider.value;
+
+slider.oninput = function() {
+  number.innerHTML = this.value;
+  generateElements();
+};
+
+//Adds data to random positions in the array based on the slider value
+let begin = document.getElementsByClassName('begin')[0];
+let arr = [];
+
+function generateElements(){
+  for (let i = 0; i < slider.value; i++){
+    const min = 0;
+    const max = arr.length;
+    const index = Math.floor(Math.random() * ((max - min) + 1)) + min;
+    arr.splice(index, 0, i + 30);
+  }
+}
+
+//Updates data div to represent the data in the array
+
 
 //Changes page structure after 'begin' is clicked
-let begin = document.getElementsByClassName('begin')[0];
-
 let changePage = function() {
   let title = document.getElementsByClassName('center-welcome')[0];
   title.removeChild(begin);
@@ -35,12 +58,16 @@ let changePage = function() {
   for (let i = 0; i < sortButtons.length; i++){
     sortButtons.item(i).style.display = 'inline-block';
   }
+  let banner = document.getElementsByClassName('bottom-banner')[0];
+  banner.children[0].style.display = 'inline-block';
+  banner.children[1].style.display = 'inline-block';
+  banner.children[2].style.display = 'inline-block';
+  generateElements();
   setTimeout(function(){
     let sortTypes = document.getElementsByClassName('sort-types')[0];
     sortTypes.style.opacity = '100%';
     let data = document.getElementsByClassName('data')[0];
     data.style.opacity = '100%';
-    let banner = document.getElementsByClassName('bottom-banner')[0];
     banner.style.opacity = '100%';
     banner.children[1].style.cursor = 'pointer';
     banner.children[2].style.cursor = 'pointer';
@@ -51,15 +78,6 @@ let changePage = function() {
 };
 
 begin.addEventListener('click', changePage);
-
-//Changes the number display based on slider movement
-let slider = document.getElementsByClassName('slider')[0];
-let number = document.getElementById('number');
-number.innerHTML = slider.value;
-
-slider.oninput = function() {
-  number.innerHTML = this.value;
-};
 
 //Enabled 'radio button' feature to sorting method buttons
 let sortButtons = document.getElementsByClassName('sort-button');
