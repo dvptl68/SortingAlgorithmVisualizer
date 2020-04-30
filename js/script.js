@@ -39,6 +39,23 @@ function generateElements(){
 }
 
 //Updates data div to represent the data in the array
+let data = document.getElementsByClassName('data')[0];
+
+function getHeightPercent(oldValue){
+  oldMin = Math.min(...arr);
+  oldMax = Math.max(...arr);
+  newMin = 5;
+  newMax = 100;
+  return (((oldValue - oldMin) * (newMax - newMin)) / (oldMax - oldMin)) + newMin;
+}
+
+function updateData(){
+  const widthPercent = 100 / arr.length;
+  for (let i = 0; i < arr.length; i++){
+    const heightPercent = getHeightPercent(arr[i]);
+
+  }
+}
 
 
 //Changes page structure after 'begin' is clicked
@@ -66,7 +83,6 @@ let changePage = function() {
   setTimeout(function(){
     let sortTypes = document.getElementsByClassName('sort-types')[0];
     sortTypes.style.opacity = '100%';
-    let data = document.getElementsByClassName('data')[0];
     data.style.opacity = '100%';
     banner.style.opacity = '100%';
     banner.children[1].style.cursor = 'pointer';
