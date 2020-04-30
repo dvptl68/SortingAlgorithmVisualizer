@@ -24,8 +24,6 @@ body {
   position: absolute;
   top: 50%;
   left: 50%;
-  /* -moz-transform: translateX(-50%) translateY(-50%);
-  -webkit-transform: translateX(-50%) translateY(-50%); */
   transform: translateX(-50%) translateY(-50%);
   transition: all 0.8s linear;
   z-index: 2;
@@ -180,6 +178,25 @@ body {
 }
 
 .random:hover {
+  background-color: crimson;
+  color: #919DAA;
+}
+
+.reverse {
+  display: none;
+  background-color: inherit;
+  color: crimson;
+  border: 4px solid crimson;
+  border-radius: 8px;
+  font-family: "Fira Code";
+  font-size: 2rem;
+  padding: 15px 32px;
+  transition-duration: 0.4s;
+  margin-top: 12px;
+  margin-left: 5px;
+}
+
+.reverse:hover {
   background-color: crimson;
   color: #919DAA;
 }

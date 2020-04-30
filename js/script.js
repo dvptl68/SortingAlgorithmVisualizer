@@ -40,6 +40,14 @@ function generateElements(){
   updateData();
 }
 
+function generateReverse(){
+  arr = [];
+  for (let i = 0; i < slider.value; i++){
+    arr.unshift(i + 30);
+  }
+  updateData();
+}
+
 //Updates data div to represent the data in the array
 let data = document.getElementsByClassName('data')[0];
 
@@ -61,6 +69,10 @@ function updateData(){
     c.style.width = widthPercent + '%';
     c.style.height = heightPercent + '%';
     c.style.display = 'inline-block';
+    // c.style.boxSizing = 'border-box';
+    // c.style.borderStyle = 'solid';
+    // c.style.borderWidth = '1px';
+    // c.style.borderColor = '#B0B0B0';
     data.appendChild(c);
   }
 }
@@ -87,6 +99,7 @@ let changePage = function() {
   banner.children[0].style.display = 'inline-block';
   banner.children[1].style.display = 'inline-block';
   banner.children[2].style.display = 'inline-block';
+  banner.children[3].style.display = 'inline-block';
   generateElements();
   setTimeout(function(){
     let sortTypes = document.getElementsByClassName('sort-types')[0];
@@ -95,6 +108,7 @@ let changePage = function() {
     banner.style.opacity = '100%';
     banner.children[1].style.cursor = 'pointer';
     banner.children[2].style.cursor = 'pointer';
+    banner.children[3].style.cursor = 'pointer';
     for (let i = 0; i < sortButtons.length; i++){
       sortButtons.item(i).style.cursor = 'pointer';
     }
@@ -143,3 +157,7 @@ for (let i = 0; i < sortButtons.length; i++){
 //Enables "randomize" button
 let randomize = document.getElementsByClassName('random')[0];
 randomize.addEventListener('click', generateElements);
+
+//Enables "reverse" button
+let reverse = document.getElementsByClassName('reverse')[0];
+reverse.addEventListener('click', generateReverse);
