@@ -91,7 +91,7 @@ body {
   white-space: nowrap;
   text-align: center;
   position: absolute;
-  top: 70px;
+  top: 85px;
   left: 50%;
   transform: translateX(-50%);
   transition: all 1s linear;
@@ -152,7 +152,7 @@ body {
   color: crimson;
   border: 4px solid crimson;
   border-radius: 8px;
-  font-family: "Fira Code";
+  font-family: "Fira Code Bold";
   font-size: 2rem;
   padding: 15px 78px;
   transition-duration: 0.4s;
@@ -206,7 +206,7 @@ body {
 
 .slider-box {
   display: none;
-  width: 240px;
+  width: 450px;
   margin: 0px;
   margin-right: 5px;
 }
@@ -246,7 +246,7 @@ body {
 }
 
 .value {
-  font-family: "Fira Code Bold";
+  font-family: "Fira Code";
   font-size: 1.6rem;
   color: crimson;
   padding: 0px;

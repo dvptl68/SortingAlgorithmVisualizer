@@ -122,6 +122,7 @@ let sortButtons = document.getElementsByClassName('sort-button');
 let selectedButton = 'bubble';
 
 function updateSortButtons(event){
+  generateElements();
   selectedButton = event.target.id;
   for (let i = 0; i < sortButtons.length; i++){
     let current = sortButtons.item(i);
@@ -161,3 +162,27 @@ randomize.addEventListener('click', generateElements);
 //Enables "reverse" button
 let reverse = document.getElementsByClassName('reverse')[0];
 reverse.addEventListener('click', generateReverse);
+
+//Calls the correct sort method based on which button is pressed
+let s = document.getElementsByClassName('sort')[0];
+s.addEventListener('click', sortCall);
+
+function sortCall(){
+  if (selectedButton === 'bubble'){
+    bubbleSort();
+    updateData();
+  }
+}
+
+function bubbleSort(){
+  const n = arr.length;
+  for (let i = 0; i < n - 1; i++){
+    for (let j = 0; j < n - i - 1; j++){
+      if (arr[j] > arr[j+1]){
+        let temp = arr[j];
+        arr[j] = arr[j+1];
+        arr[j+1] = temp;
+      }
+    }
+  }
+}
