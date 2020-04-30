@@ -2,18 +2,18 @@
 //Changes the GitHub logo color scheme on mouse hover/unhover
 let g = document.getElementsByClassName('github')[0];
 
-let hover = function() {
+let hoverLogo = function() {
   g.style.backgroundColor = 'crimson';
   g.src = 'images/gray-logo.png';
 };
 
-let unhover = function() {
+let unhoverLogo = function() {
   g.style.backgroundColor = '#B0B0B0';
   g.src = 'images/crimson-logo.png';
 };
 
-g.addEventListener('mouseenter', hover);
-g.addEventListener('mouseleave', unhover);
+g.addEventListener('mouseenter', hoverLogo);
+g.addEventListener('mouseleave', unhoverLogo);
 
 
 //Changes page structure after 'begin' is clicked
@@ -60,18 +60,34 @@ slider.oninput = function() {
 
 //Enabled 'radio button' feature to sorting method buttons
 let sortButtons = document.getElementsByClassName('sort-button');
+let selectedButton = 'bubble';
 
 function updateSortButtons(event){
+  selectedButton = event.target.id;
   for (let i = 0; i < sortButtons.length; i++){
     let current = sortButtons.item(i);
     if (current.isSameNode(event.target)){
       current.style.color = '#B0B0B0';
       current.style.backgroundColor = 'crimson';
+      current.removeEventListener('mouseenter', hoverSort);
+      current.removeEventListener('mouseleave', unhoverSort);
     }else{
       current.style.color = 'crimson';
       current.style.backgroundColor = '#B0B0B0';
+      current.addEventListener('mouseenter', hoverSort);
+      current.addEventListener('mouseleave', unhoverSort);
     }
   }
+}
+
+function hoverSort(event) {
+  event.target.style.color = '#B0B0B0';
+  event.target.style.backgroundColor = 'crimson';
+}
+
+function unhoverSort(event) {
+  event.target.style.color = 'crimson';
+  event.target.style.backgroundColor = '#B0B0B0';
 }
 
 for (let i = 0; i < sortButtons.length; i++){
