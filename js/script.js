@@ -139,3 +139,7 @@ for (let i = 0; i < sortButtons.length; i++){
   let current = sortButtons.item(i);
   current.addEventListener('click', updateSortButtons);
 }
+
+//Enables "randomize" button
+let randomize = document.getElementsByClassName('random')[0];
+randomize.addEventListener('click', generateElements);
