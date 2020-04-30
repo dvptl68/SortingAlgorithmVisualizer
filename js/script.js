@@ -36,6 +36,7 @@ function generateElements(){
     const index = Math.floor(Math.random() * ((max - min) + 1)) + min;
     arr.splice(index, 0, i + 30);
   }
+  updateData();
 }
 
 //Updates data div to represent the data in the array
@@ -53,7 +54,11 @@ function updateData(){
   const widthPercent = 100 / arr.length;
   for (let i = 0; i < arr.length; i++){
     const heightPercent = getHeightPercent(arr[i]);
-
+    let c = document.createElement('DIV');
+    c.style.backgroundColor = 'black';
+    c.style.width = widthPercent + '%';
+    c.style.height = heightPercent + '%';
+    data.appendChild(c);
   }
 }
 
