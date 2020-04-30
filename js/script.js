@@ -29,6 +29,9 @@ let changePage = function() {
   title.style.marginLeft = '230px';
   title.style.top = '0';
   title.style.left = '0';
+  let sortButtons = document.getElementsByClassName('sort-button');
+  sortButtons.item(0).style.backgroundColor = 'crimson';
+  sortButtons.item(0).style.color = '#B0B0B0';
   setTimeout(function(){
     let sortTypes = document.getElementsByClassName('sort-types')[0];
     sortTypes.style.opacity = '100%';
@@ -38,6 +41,9 @@ let changePage = function() {
     banner.style.opacity = '100%';
     banner.children[1].style.cursor = 'pointer';
     banner.children[2].style.cursor = 'pointer';
+    for (let i = 0; i < sortButtons.length; i++){
+      sortButtons.item(i).style.cursor = 'pointer';
+    }
   }, 800);
 };
 
@@ -51,3 +57,5 @@ number.innerHTML = slider.value;
 slider.oninput = function() {
   number.innerHTML = this.value;
 };
+
+//Enabled button clicking mechanism of sorting method buttons

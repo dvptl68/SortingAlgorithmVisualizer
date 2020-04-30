@@ -97,10 +97,24 @@ body {
   transition: all 1s linear;
   height: 100px;
   width: 95%;
-  border-style: dashed;
-  border-width = 2px;
-  border-color: white;
   opacity: 0%;
+}
+
+.sort-button {
+  display: inline-block;
+  background-color: inherit;
+  color: crimson;
+  border: 4px solid crimson;
+  border-radius: 8px;
+  font-family: "Fira Code";
+  font-size: 1.5rem;
+  transition-duration: 0.4s;
+  margin-top: 10px;
+}
+
+.sort-button:hover {
+  background-color: crimson;
+  color: #B0B0B0;
 }
 
 .data {
