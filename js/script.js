@@ -58,4 +58,23 @@ slider.oninput = function() {
   number.innerHTML = this.value;
 };
 
-//Enabled button clicking mechanism of sorting method buttons
+//Enabled 'radio button' feature to sorting method buttons
+let sortButtons = document.getElementsByClassName('sort-button');
+
+function updateSortButtons(event){
+  for (let i = 0; i < sortButtons.length; i++){
+    let current = sortButtons.item(i);
+    if (current.isSameNode(event.target)){
+      current.style.color = '#B0B0B0';
+      current.style.backgroundColor = 'crimson';
+    }else{
+      current.style.color = 'crimson';
+      current.style.backgroundColor = '#B0B0B0';
+    }
+  }
+}
+
+for (let i = 0; i < sortButtons.length; i++){
+  let current = sortButtons.item(i);
+  current.addEventListener('click', updateSortButtons);
+}
