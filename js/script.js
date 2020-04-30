@@ -32,6 +32,9 @@ let changePage = function() {
   let sortButtons = document.getElementsByClassName('sort-button');
   sortButtons.item(0).style.backgroundColor = 'crimson';
   sortButtons.item(0).style.color = '#B0B0B0';
+  for (let i = 0; i < sortButtons.length; i++){
+    sortButtons.item(i).style.display = 'inline-block';
+  }
   setTimeout(function(){
     let sortTypes = document.getElementsByClassName('sort-types')[0];
     sortTypes.style.opacity = '100%';
