@@ -30,6 +30,7 @@ let begin = document.getElementsByClassName('begin')[0];
 let arr = [];
 
 function generateElements(){
+  arr = [];
   for (let i = 0; i < slider.value; i++){
     const min = 0;
     const max = arr.length;
@@ -51,6 +52,7 @@ function getHeightPercent(oldValue){
 }
 
 function updateData(){
+  data.innerHTML = '';
   const widthPercent = 100 / arr.length;
   for (let i = 0; i < arr.length; i++){
     const heightPercent = getHeightPercent(arr[i]);
@@ -58,6 +60,7 @@ function updateData(){
     c.style.backgroundColor = 'black';
     c.style.width = widthPercent + '%';
     c.style.height = heightPercent + '%';
+    c.style.display = 'inline-block';
     data.appendChild(c);
   }
 }

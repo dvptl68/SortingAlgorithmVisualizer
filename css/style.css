@@ -149,6 +149,7 @@ body {
 
 .sort {
   display: none;
+  position: relative;
   background-color: inherit;
   color: crimson;
   border: 4px solid crimson;
