@@ -192,14 +192,11 @@ s.addEventListener('click', sortCall);
 //Selects the proper sort method based on which sort button is pressed
 function sortCall(){
   enableButtons(false);
-
   if (selectedButton === 'bubble'){
     bubbleSort();
     updateData();
   }
-  setTimeout(function(){
-    enableButtons(true);
-  }, 1000);
+  enableButtons(true);
 }
 
 //Bubble sort algorithm
@@ -230,8 +227,10 @@ function enableButtons(enable){
       sortButtons.item(i).disabled = false;
       sortButtons.item(i).style.opacity = '100%';
       sortButtons.item(i).style.cursor = 'pointer';
-      sortButtons.item(i).addEventListener('mouseenter', hoverButton);
-      sortButtons.item(i).addEventListener('mouseleave', unhoverButton);
+      if (selectedButton === sortButtons.item(i).textContent){
+        sortButtons.item(i).addEventListener('mouseenter', hoverButton);
+        sortButtons.item(i).addEventListener('mouseleave', unhoverButton);
+      }
     }
     for (let i = 1; i < banner.children.length; i++){
       banner.children[i].disabled = false;
