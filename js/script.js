@@ -51,11 +51,7 @@ function generateReverse(){
 //Updates data div to represent the data in the array
 let data = document.getElementsByClassName('data')[0];
 
-function getHeightPercent(oldValue){
-  oldMin = Math.min(...arr);
-  oldMax = Math.max(...arr);
-  newMin = 5;
-  newMax = 100;
+function getNewValue(oldValue, oldMin = Math.min(...arr), oldMax = Math.max(...arr), newMin = 5, newMax = 100){
   return (((oldValue - oldMin) * (newMax - newMin)) / (oldMax - oldMin)) + newMin;
 }
 
@@ -63,7 +59,7 @@ function updateData(){
   data.innerHTML = '';
   const widthPercent = 100 / arr.length;
   for (let i = 0; i < arr.length; i++){
-    const heightPercent = getHeightPercent(arr[i]);
+    const heightPercent = getNewValue(arr[i]);
     let c = document.createElement('DIV');
     c.style.backgroundColor = 'black';
     c.style.width = widthPercent + '%';
@@ -108,7 +104,7 @@ let changePage = function() {
     banner.children[1].style.cursor = 'pointer';
     banner.children[2].style.cursor = 'pointer';
     banner.children[3].style.cursor = 'pointer';
-    for (let i = 0; i < sortButtons.length; i++){
+    for (let i = 1; i < sortButtons.length; i++){
       sortButtons.item(i).style.cursor = 'pointer';
     }
   }, 800);
@@ -119,7 +115,7 @@ begin.addEventListener('click', changePage);
 //Changes button color scheme on hover
 let sortButtons = document.getElementsByClassName('sort-button');
 let banner = document.getElementsByClassName('bottom-banner')[0];
-for (let i = 0; i < sortButtons.length; i++){
+for (let i = 1; i < sortButtons.length; i++){
   sortButtons.item(i).addEventListener('mouseenter', hoverButton);
   sortButtons.item(i).addEventListener('mouseleave', unhoverButton);
 }
@@ -141,11 +137,15 @@ function updateSortButtons(event){
       current.style.backgroundColor = 'crimson';
       current.removeEventListener('mouseenter', hoverButton);
       current.removeEventListener('mouseleave', unhoverButton);
+      current.removeEventListener('click', updateSortButtons);
+      current.style.cursor = 'default';
     }else{
       current.style.color = 'crimson';
       current.style.backgroundColor = '#B0B0B0';
       current.addEventListener('mouseenter', hoverButton);
       current.addEventListener('mouseleave', unhoverButton);
+      current.addEventListener('click', updateSortButtons);
+      current.style.cursor = 'pointer';
     }
   }
 }
@@ -170,7 +170,7 @@ function unhoverButtonBottom(event){
   event.target.style.backgroundColor = '#919DAA';
 }
 
-for (let i = 0; i < sortButtons.length; i++){
+for (let i = 1; i < sortButtons.length; i++){
   let current = sortButtons.item(i);
   current.addEventListener('click', updateSortButtons);
 }
@@ -189,34 +189,32 @@ s.addEventListener('click', sortCall);
 
 //Selects the proper sort method based on which sort button is pressed
 function sortCall(){
-
   enableButtons(false);
-
+  let time = getNewValue(arr.length, 10, 300, 1, 50);
+  time = 51 - time;
   if (selectedButton === 'bubble'){
-    bubbleSort();
+    bubbleSort(time);
   }else if(selectedButton === 'insert'){
     insertionSort();
     updateData();
   }
-
   enableButtons(true);
 }
 
 //Bubble sort algorithm
-function bubbleSort(){
+function bubbleSort(time){
   const n = arr.length;
   var totalTime = 0;
   for (let i = 0; i < n - 1; i++){
       for (let j = 0; j < n - i - 1; j++){
-        var time = 10;
         totalTime += time;
         setTimeout(function(){
           if (arr[j] > arr[j+1]){
             let temp = arr[j];
             arr[j] = arr[j+1];
             arr[j+1] = temp;
-            data.children[j].style.height = getHeightPercent(arr[j]) + '%';
-            data.children[j+1].style.height = getHeightPercent(arr[j+1]) + '%';
+            data.children[j].style.height = getNewValue(arr[j]) + '%';
+            data.children[j+1].style.height = getNewValue(arr[j+1]) + '%';
           }
         }, totalTime);
       }
@@ -243,7 +241,9 @@ function enableButtons(enable){
     for (let i = 0; i < sortButtons.length; i++){
       sortButtons.item(i).disabled = false;
       sortButtons.item(i).style.opacity = '100%';
-      sortButtons.item(i).style.cursor = 'pointer';
+      if (!(selectedButton === sortButtons.item(i).id)){
+        sortButtons.item(i).style.cursor = 'pointer';
+      }
       if (!(selectedButton === sortButtons.item(i).id)){
         sortButtons.item(i).addEventListener('mouseenter', hoverButton);
         sortButtons.item(i).addEventListener('mouseleave', unhoverButton);
