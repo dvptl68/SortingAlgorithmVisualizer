@@ -196,6 +196,7 @@ function sortCall(){
     bubbleSort();
   }else if(selectedButton === 'insert'){
     insertionSort();
+    updateData();
   }
 
   enableButtons(true);
@@ -204,16 +205,21 @@ function sortCall(){
 //Bubble sort algorithm
 function bubbleSort(){
   const n = arr.length;
+  var totalTime = 0;
   for (let i = 0; i < n - 1; i++){
-    for (let j = 0; j < n - i - 1; j++){
-      if (arr[j] > arr[j+1]){
-        let temp = arr[j];
-        arr[j] = arr[j+1];
-        arr[j+1] = temp;
-        data.children[j].style.height = getHeightPercent(arr[j]) + '%';
-        data.children[j+1].style.height = getHeightPercent(arr[j+1]) + '%';
+      for (let j = 0; j < n - i - 1; j++){
+        var time = 10;
+        totalTime += time;
+        setTimeout(function(){
+          if (arr[j] > arr[j+1]){
+            let temp = arr[j];
+            arr[j] = arr[j+1];
+            arr[j+1] = temp;
+            data.children[j].style.height = getHeightPercent(arr[j]) + '%';
+            data.children[j+1].style.height = getHeightPercent(arr[j+1]) + '%';
+          }
+        }, totalTime);
       }
-    }
   }
 }
 
