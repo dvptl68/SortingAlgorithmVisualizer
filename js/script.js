@@ -197,7 +197,7 @@ function sortCall(){
   let time = 0;
   if (arr.length <= 30){
     if (arr.length === 10){
-      time = 300;
+      time = 200;
     }else{
       time = 100;
     }
@@ -212,6 +212,7 @@ function sortCall(){
     updateData();
   }
   //Adds a verification visualization after sorting is complete
+  time = 2000 / arr.length;
   for (let i = 0; i < arr.length; i++){
     totalTime += time;
     setTimeout(function(){
@@ -220,11 +221,11 @@ function sortCall(){
   }
   setTimeout(function(){
     for (let i = 0; i < arr.length; i++){
-      data.children[i].style.transitionDuration = '2s';
+      data.children[i].style.transitionDuration = '1s';
       data.children[i].style.backgroundColor = 'black';
     }
     enableButtons(true);
-  }, totalTime + 1000);
+  }, totalTime + 500);
 }
 
 //Bubble sort algorithm
