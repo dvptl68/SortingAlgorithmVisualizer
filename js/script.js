@@ -189,10 +189,15 @@ s.addEventListener('click', sortCall);
 
 //Selects the proper sort method based on which sort button is pressed
 function sortCall(){
+
   enableButtons(false);
+
   if (selectedButton === 'bubble'){
     bubbleSort();
+  }else if(selectedButton === 'insert'){
+    insertionSort();
   }
+
   enableButtons(true);
 }
 
@@ -209,6 +214,20 @@ function bubbleSort(){
         data.children[j+1].style.height = getHeightPercent(arr[j+1]) + '%';
       }
     }
+  }
+}
+
+//Insertion sort algorithm
+function insertionSort(){
+  const n = arr.length;
+  for (let i = 1; i < n; i++) {
+    let k = arr[i];
+    let j = i - 1;
+    while (j >= 0 && arr[j] > k) {
+      arr[j + 1] = arr[j];
+      j = j - 1;
+    }
+    arr[j + 1] = k;
   }
 }
 
