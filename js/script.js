@@ -188,23 +188,34 @@ let s = document.getElementsByClassName('sort')[0];
 s.addEventListener('click', sortCall);
 
 //Selects the proper sort method based on which sort button is pressed
+var totalTime = 0;
 function sortCall(){
+  totalTime = 0;
   enableButtons(false);
-  let time = getNewValue(arr.length, 10, 300, 1, 50);
-  time = 51 - time;
+  let time = 0;
+  if (arr.length <= 30){
+    if (arr.length === 10){
+      time = 300;
+    }else{
+      time = 100;
+    }
+  }else{
+    time = 11 - getNewValue(arr.length, 10, 300, 1, 10);
+  }
   if (selectedButton === 'bubble'){
     bubbleSort(time);
   }else if(selectedButton === 'insert'){
     insertionSort();
     updateData();
   }
-  enableButtons(true);
+  setTimeout(function(){
+    enableButtons(true);
+  }, totalTime);
 }
 
 //Bubble sort algorithm
 function bubbleSort(time){
   const n = arr.length;
-  var totalTime = 0;
   for (let i = 0; i < n - 1; i++){
       for (let j = 0; j < n - i - 1; j++){
         totalTime += time;
@@ -216,7 +227,13 @@ function bubbleSort(time){
             data.children[j].style.height = getNewValue(arr[j]) + '%';
             data.children[j+1].style.height = getNewValue(arr[j+1]) + '%';
           }
+          data.children[j].style.backgroundColor = 'crimson';
+          data.children[j+1].style.backgroundColor = 'crimson';
         }, totalTime);
+        setTimeout(function(){
+          data.children[j].style.backgroundColor = 'black';
+          data.children[j+1].style.backgroundColor = 'black';
+        }, totalTime + time);
       }
   }
 }
