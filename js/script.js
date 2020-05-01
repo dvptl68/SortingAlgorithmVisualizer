@@ -208,8 +208,7 @@ function sortCall(){
   if (selectedButton === 'bubble'){
     bubbleSort(time);
   }else if(selectedButton === 'insert'){
-    insertionSort();
-    updateData();
+    insertionSort(time);
   }
   //Adds a verification visualization after sorting is complete
   time = 2000 / arr.length;
@@ -226,6 +225,7 @@ function sortCall(){
     }
     enableButtons(true);
   }, totalTime + 500);
+  setTimeout(updateData(), totalTime + 501);
 }
 
 //Bubble sort algorithm
@@ -243,7 +243,7 @@ function bubbleSort(time){
             data.children[j+1].style.height = getNewValue(arr[j+1]) + '%';
           }
           data.children[j].style.backgroundColor = 'crimson';
-          data.children[j+1].style.backgroundColor = 'crimson';
+          data.children[j+1].style.backgroundColor = '#4169E1';
         }, totalTime);
         setTimeout(function(){
           data.children[j].style.backgroundColor = 'black';
@@ -254,9 +254,13 @@ function bubbleSort(time){
 }
 
 //Insertion sort algorithm
-function insertionSort(){
+function insertionSort(time){
   const n = arr.length;
   for (let i = 1; i < n; i++) {
+    totalTime += time;
+    setTimeout(function(){
+      data.children[i].style.backgroundColor = '#4169E1';
+    }, totalTime);
     let k = arr[i];
     let j = i - 1;
     while (j >= 0 && arr[j] > k) {
@@ -264,6 +268,9 @@ function insertionSort(){
       j = j - 1;
     }
     arr[j + 1] = k;
+    setTimeout(function(){
+      data.children[i].style.backgroundColor = 'black';
+    }, totalTime + time);
   }
 }
 
