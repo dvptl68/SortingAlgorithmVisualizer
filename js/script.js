@@ -77,7 +77,6 @@ function updateData(){
   }
 }
 
-
 //Changes page structure after 'begin' is clicked
 let changePage = function() {
   let title = document.getElementsByClassName('center-welcome')[0];
@@ -128,7 +127,6 @@ for (let i = 1; i < banner.children.length; i++){
   banner.children[i].addEventListener('mouseenter', hoverButtonBottom);
   banner.children[i].addEventListener('mouseleave', unhoverButtonBottom);
 }
-
 
 //Enabled 'radio button' feature to sorting method buttons
 let selectedButton = 'bubble';
@@ -194,7 +192,6 @@ function sortCall(){
   enableButtons(false);
   if (selectedButton === 'bubble'){
     bubbleSort();
-    updateData();
   }
   enableButtons(true);
 }
@@ -208,16 +205,11 @@ function bubbleSort(){
         let temp = arr[j];
         arr[j] = arr[j+1];
         arr[j+1] = temp;
+        data.children[j].style.height = getHeightPercent(arr[j]) + '%';
+        data.children[j+1].style.height = getHeightPercent(arr[j+1]) + '%';
       }
     }
   }
-}
-
-//Function to pause the program for visuals to take place
-function sleep(miliseconds) {
-   var currentTime = new Date().getTime();
-   while ((currentTime + miliseconds) >= new Date().getTime()) {
-   }
 }
 
 //Function to enable/disable all buttons for sorting to take place
@@ -227,7 +219,7 @@ function enableButtons(enable){
       sortButtons.item(i).disabled = false;
       sortButtons.item(i).style.opacity = '100%';
       sortButtons.item(i).style.cursor = 'pointer';
-      if (selectedButton === sortButtons.item(i).textContent){
+      if (!(selectedButton === sortButtons.item(i).id)){
         sortButtons.item(i).addEventListener('mouseenter', hoverButton);
         sortButtons.item(i).addEventListener('mouseleave', unhoverButton);
       }
