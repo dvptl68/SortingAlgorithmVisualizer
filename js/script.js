@@ -65,6 +65,7 @@ function updateData(){
     c.style.width = widthPercent + '%';
     c.style.height = heightPercent + '%';
     c.style.display = 'inline-block';
+    //The following would add spaces between bars but does not look good with less than 4K screens
     // c.style.boxSizing = 'border-box';
     // c.style.borderStyle = 'solid';
     // c.style.borderWidth = '1px';
@@ -192,6 +193,7 @@ var totalTime = 0;
 function sortCall(){
   totalTime = 0;
   enableButtons(false);
+  //Finds the pause time based on amount of data
   let time = 0;
   if (arr.length <= 30){
     if (arr.length === 10){
@@ -202,15 +204,27 @@ function sortCall(){
   }else{
     time = 11 - getNewValue(arr.length, 10, 300, 1, 10);
   }
+  //Calls the correct sort method
   if (selectedButton === 'bubble'){
     bubbleSort(time);
   }else if(selectedButton === 'insert'){
     insertionSort();
     updateData();
   }
+  //Adds a verification visualization after sorting is complete
+  for (let i = 0; i < arr.length; i++){
+    totalTime += time;
+    setTimeout(function(){
+      data.children[i].style.backgroundColor = 'green';
+    }, totalTime);
+  }
   setTimeout(function(){
+    for (let i = 0; i < arr.length; i++){
+      data.children[i].style.transitionDuration = '2s';
+      data.children[i].style.backgroundColor = 'black';
+    }
     enableButtons(true);
-  }, totalTime);
+  }, totalTime + 1000);
 }
 
 //Bubble sort algorithm
