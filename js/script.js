@@ -256,23 +256,39 @@ function bubbleSort(time){
 //Insertion sort algorithm
 function insertionSort(time){
   const n = arr.length;
-  for (let i = 1; i < n; i++) {
-    totalTime += time;
-    setTimeout(function(){
-      data.children[i].style.backgroundColor = '#4169E1';
-    }, totalTime);
+  for (let i = 1; i < n; i++){
     let k = arr[i];
     let j = i - 1;
-    while (j >= 0 && arr[j] > k) {
-      arr[j + 1] = arr[j];
-      j = j - 1;
+    while (j >= 0 && arr[j] > k){
+      arr[j+1] = arr[j];
+      j--;
     }
-    arr[j + 1] = k;
-    setTimeout(function(){
-      data.children[i].style.backgroundColor = 'black';
-    }, totalTime + time);
+    arr[j+1] = k;
   }
 }
+
+
+// var i = 1;
+// function insertionSortRecursive(time){
+//   const n = arr.length;
+//   if (i < n){
+//     let k = arr[i];
+//     let j = i - 1;
+//     j = insertionSortRecursive1(j, k);
+//     arr[j+1] = k;
+//     i++;
+//     insertionSort(time);
+//   }
+// }
+//
+// function insertionSortRecursive1(j, k, time){
+//   if (j >= 0 && arr[j] > k){
+//     arr[j + 1] = arr[j];
+//     j--;
+//     j = insertionSortRecursive1(j, k);
+//   }
+//   return j;
+// }
 
 //Function to enable/disable all buttons for sorting to take place
 function enableButtons(enable){
