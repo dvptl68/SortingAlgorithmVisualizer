@@ -55,6 +55,7 @@ function getNewValue(oldValue, oldMin = Math.min(...arr), oldMax = Math.max(...a
   return (((oldValue - oldMin) * (newMax - newMin)) / (oldMax - oldMin)) + newMin;
 }
 
+let areLines = false;
 function updateData(){
   data.innerHTML = '';
   const widthPercent = 100 / arr.length;
@@ -65,14 +66,44 @@ function updateData(){
     c.style.width = widthPercent + '%';
     c.style.height = heightPercent + '%';
     c.style.display = 'inline-block';
-    //The following would add spaces between bars but does not look good with less than 4K screens
-    // c.style.boxSizing = 'border-box';
-    // c.style.borderStyle = 'solid';
-    // c.style.borderWidth = '1px';
-    // c.style.borderColor = '#B0B0B0';
+    addBarLines(c);
     data.appendChild(c);
   }
 }
+
+//Adds/removes line spaces between bars
+function addBarLines(event){
+  if (event.target && event.keyCode == 84){
+    areLines = !areLines;
+    if (areLines){
+      for (let i = 0; i < arr.length; i++){
+        data.children[i].style.setProperty('transition-duration', '0s');
+        data.children[i].style.boxSizing = 'border-box';
+        data.children[i].style.borderStyle = 'solid';
+        data.children[i].style.borderWidth = '0px 1px 0px 1px';
+        data.children[i].style.borderColor = '#B0B0B0';
+      }
+    }else{
+      for (let i = 0; i < arr.length; i++){
+        data.children[i].style.setProperty('transition-duration', '0s');
+        data.children[i].style.setProperty('box-sizing', 'initial');
+        data.children[i].style.setProperty('border-style', 'initial');
+        data.children[i].style.setProperty('border-width', 'initial');
+        data.children[i].style.setProperty('border-color', 'initial');
+      }
+    }
+  }else{
+    if (areLines){
+      event.style.boxSizing = 'border-box';
+      event.style.borderStyle = 'solid';
+      event.style.borderWidth = '0px 1px 0px 1px';
+      event.style.borderColor = '#B0B0B0';
+    }
+  }
+
+}
+
+document.addEventListener('keydown', addBarLines);
 
 //Changes page structure after 'begin' is clicked
 let changePage = function() {
@@ -260,13 +291,14 @@ function insertionSort(time){
     let k = arr[i];
     let j = i - 1;
     while (j >= 0 && arr[j] > k){
+      data.children[j+1].style.height = getNewValue(arr[j]) + '%';
+      data.children[j].style.height = getNewValue(k) + '%';
       arr[j+1] = arr[j];
       j--;
     }
     arr[j+1] = k;
   }
 }
-
 
 // var i = 1;
 // function insertionSortRecursive(time){
@@ -312,6 +344,7 @@ function enableButtons(enable){
       banner.children[i].addEventListener('mouseleave', unhoverButtonBottom);
     }
     banner.children[0].children[0].style.display = 'inline-block';
+    document.addEventListener('keydown', addBarLines);
   }else{
     for (let i = 0; i < sortButtons.length; i++){
       sortButtons.item(i).disabled = true;
@@ -330,5 +363,6 @@ function enableButtons(enable){
       banner.children[i].removeEventListener('mouseleave', unhoverButtonBottom);
     }
     banner.children[0].children[0].style.display = 'none';
+    document.removeEventListener('keydown', addBarLines);
   }
 }
