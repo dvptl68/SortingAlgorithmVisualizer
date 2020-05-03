@@ -313,6 +313,8 @@ function selectionSort(time){
     let temp = arr[min];
     arr[min] = arr[i];
     arr[i] = temp;
+    data.children[i].style.height = getNewValue(arr[i]) + '%';
+    data.children[min].style.height = getNewValue(arr[min]) + '%';
   }
 }
 
