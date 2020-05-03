@@ -256,31 +256,31 @@ function sortCall(){
     }
     enableButtons(true);
   }, totalTime + 500);
-  setTimeout(updateData(), totalTime + 501);
+  setTimeout(function() { updateData(); }, totalTime + 1500);
 }
 
 //Bubble sort algorithm
 function bubbleSort(time){
   const n = arr.length;
   for (let i = 0; i < n - 1; i++){
-      for (let j = 0; j < n - i - 1; j++){
-        totalTime += time;
-        setTimeout(function(){
-          if (arr[j] > arr[j+1]){
-            let temp = arr[j];
-            arr[j] = arr[j+1];
-            arr[j+1] = temp;
-            data.children[j].style.height = getNewValue(arr[j]) + '%';
-            data.children[j+1].style.height = getNewValue(arr[j+1]) + '%';
-          }
-          data.children[j].style.backgroundColor = 'crimson';
-          data.children[j+1].style.backgroundColor = '#4169E1';
-        }, totalTime);
-        setTimeout(function(){
-          data.children[j].style.backgroundColor = 'black';
-          data.children[j+1].style.backgroundColor = 'black';
-        }, totalTime + time);
-      }
+    for (let j = 0; j < n - i - 1; j++){
+      totalTime += time;
+      setTimeout(function(){
+        if (arr[j] > arr[j+1]){
+          let temp = arr[j];
+          arr[j] = arr[j+1];
+          arr[j+1] = temp;
+          data.children[j].style.height = getNewValue(arr[j]) + '%';
+          data.children[j+1].style.height = getNewValue(arr[j+1]) + '%';
+        }
+        data.children[j].style.backgroundColor = 'crimson';
+        data.children[j+1].style.backgroundColor = '#4169E1';
+      }, totalTime);
+      setTimeout(function(){
+        data.children[j].style.backgroundColor = 'black';
+        data.children[j+1].style.backgroundColor = 'black';
+      }, totalTime + time);
+    }
   }
 }
 
@@ -288,15 +288,13 @@ function bubbleSort(time){
 function insertionSort(time){
   const n = arr.length;
   for (let i = 1; i < n; i++){
-    let k = arr[i];
-    let j = i - 1;
-    while (j >= 0 && arr[j] > k){
-      data.children[j+1].style.height = getNewValue(arr[j]) + '%';
-      data.children[j].style.height = getNewValue(k) + '%';
-      arr[j+1] = arr[j];
-      j--;
+    for (let j = i - 1; j >= 0 && arr[j] > arr[j+1]; j--){
+      let temp = arr[j];
+      arr[j] = arr[j+1];
+      arr[j+1] = temp;
+      data.children[j].style.height = getNewValue(arr[j]) + '%';
+      data.children[j+1].style.height = getNewValue(arr[j+1]) + '%';
     }
-    arr[j+1] = k;
   }
 }
 
