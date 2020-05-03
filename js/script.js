@@ -242,6 +242,8 @@ function sortCall(){
     insertionSort(time);
   }else if (selectedButton === 'select'){
     selectionSort(time);
+  }else if (selectedButton === 'quick'){
+    quickSort(time, 0, arr.length - 1);
   }
   //Adds a verification visualization after sorting is complete
   time = 2000 / arr.length;
@@ -311,29 +313,6 @@ function insertUpdate(index, val1, val2, totalTime, time){
   }, totalTime + time);
 }
 
-//Partially working selection sort animation
-// function insertionSort(time){
-//   const n = arr.length;
-//   for (let i = 1; i < n; i++){
-//     for (let j = i - 1; j >= 0; j--){
-//       setTimeout(function(){
-//         if (arr[j] > arr[j+1]){
-//           let temp = arr[j];
-//           arr[j] = arr[j+1];
-//           arr[j+1] = temp;
-//           data.children[j].style.height = getNewValue(arr[j]) + '%';
-//           data.children[j+1].style.height = getNewValue(arr[j+1]) + '%';
-//         }
-//         data.children[j].style.backgroundColor = 'crimson';
-//       }, totalTime);
-//       totalTime += time;
-//       setTimeout(function(){
-//         data.children[j].style.backgroundColor = 'black';
-//       }, totalTime);
-//     }
-//   }
-// }
-
 //Selection sort algorithm
 function selectionSort(time){
   const n = arr.length;
@@ -369,6 +348,32 @@ function selectUpdate(i, min, iVal, minVal, totalTime){
     data.children[i].style.height = getNewValue(iVal) + '%';
     data.children[min].style.height = getNewValue(minVal) + '%';
   }, totalTime);
+}
+
+//Quick sort algorithm
+function quickSortPartition(time, start, end){
+  let pivot = arr[end];
+  let i = start - 1;
+  for (let j = start; j < end; j++){
+    if (arr[j] < pivot){
+      i++;
+      let temp = arr[i];
+      arr[i] = arr[j];
+      arr[j] = temp;
+    }
+  }
+  let temp = arr[i+1];
+  arr[i+1] = arr[end];
+  arr[end] = temp;
+  return i + 1;
+}
+
+function quickSort(time, start, end){
+  if (start < end){
+    let p = quickSortPartition(time, start, end);
+    quickSort(time, start, p - 1);
+    quickSort(time, p + 1, end);
+  }
 }
 
 //Function to enable/disable all buttons for sorting to take place
