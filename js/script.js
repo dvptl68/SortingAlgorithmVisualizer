@@ -240,6 +240,8 @@ function sortCall(){
     bubbleSort(time);
   }else if(selectedButton === 'insert'){
     insertionSort(time);
+  }else if (selectedButton === 'select'){
+    selectionSort(time);
   }
   //Adds a verification visualization after sorting is complete
   time = 2000 / arr.length;
@@ -295,6 +297,22 @@ function insertionSort(time){
       data.children[j].style.height = getNewValue(arr[j]) + '%';
       data.children[j+1].style.height = getNewValue(arr[j+1]) + '%';
     }
+  }
+}
+
+//Selection sort algorithm
+function selectionSort(time){
+  const n = arr.length;
+  for (let i = 0; i < n - 1; i++){
+    let min = i;
+    for (let j = i + 1; j < n; j++){
+      if (arr[j] < arr[min]){
+        min = j;
+      }
+    }
+    let temp = arr[min];
+    arr[min] = arr[i];
+    arr[i] = temp;
   }
 }
 
