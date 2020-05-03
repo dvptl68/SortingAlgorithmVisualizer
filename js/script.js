@@ -357,12 +357,18 @@ function selectionSort(time){
     let temp = arr[min];
     arr[min] = arr[i];
     arr[i] = temp;
+    selectUpdate(i, min, arr[i], arr[min], totalTime);
     setTimeout(function(){
       data.children[i].style.backgroundColor = 'black';
-      data.children[i].style.height = getNewValue(arr[i]) + '%';
-      data.children[min].style.height = getNewValue(arr[min]) + '%';
     }, totalTime);
   }
+}
+
+function selectUpdate(i, min, iVal, minVal, totalTime){
+  setTimeout(function(){
+    data.children[i].style.height = getNewValue(iVal) + '%';
+    data.children[min].style.height = getNewValue(minVal) + '%';
+  }, totalTime);
 }
 
 //Function to enable/disable all buttons for sorting to take place
