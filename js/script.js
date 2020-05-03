@@ -292,41 +292,46 @@ function insertionSort(time){
   for (let i = 1; i < n; i++){
     for (let j = i - 1; j >= 0 && arr[j] > arr[j+1]; j--){
       totalTime += time;
-      setTimeout(function(){
-        data.children[j].style.backgroundColor = 'crimson';
-      }, totalTime);
-      setTimeout(function(){
-        data.children[j].style.backgroundColor = 'black';
-      }, totalTime + time);
-      // data.children[j].style.height = getNewValue(arr[j+1]) + '%';
-      // data.children[j+1].style.height = getNewValue(arr[j]) + '%';
       let temp = arr[j];
       arr[j] = arr[j+1];
       arr[j+1] = temp;
+      insertUpdate(j, arr[j], arr[j+1], totalTime, time);
     }
   }
 }
 
-// var i = 1;
-// function insertionSortRecursive(time){
+function insertUpdate(index, val1, val2, totalTime, time){
+  setTimeout(function(){
+    data.children[index].style.height = getNewValue(val1) + '%';
+    data.children[index+1].style.height = getNewValue(val2) + '%';
+    data.children[index].style.backgroundColor = 'crimson';
+  }, totalTime);
+  setTimeout(function(){
+    data.children[index].style.backgroundColor = 'black';
+  }, totalTime + time);
+}
+
+//Partially working selection sort animation
+// function insertionSort(time){
 //   const n = arr.length;
-//   if (i < n){
-//     let k = arr[i];
-//     let j = i - 1;
-//     j = insertionSortRecursive1(j, k);
-//     arr[j+1] = k;
-//     i++;
-//     insertionSort(time);
+//   for (let i = 1; i < n; i++){
+//     for (let j = i - 1; j >= 0; j--){
+//       setTimeout(function(){
+//         if (arr[j] > arr[j+1]){
+//           let temp = arr[j];
+//           arr[j] = arr[j+1];
+//           arr[j+1] = temp;
+//           data.children[j].style.height = getNewValue(arr[j]) + '%';
+//           data.children[j+1].style.height = getNewValue(arr[j+1]) + '%';
+//         }
+//         data.children[j].style.backgroundColor = 'crimson';
+//       }, totalTime);
+//       totalTime += time;
+//       setTimeout(function(){
+//         data.children[j].style.backgroundColor = 'black';
+//       }, totalTime);
+//     }
 //   }
-// }
-//
-// function insertionSortRecursive1(j, k, time){
-//   if (j >= 0 && arr[j] > k){
-//     arr[j + 1] = arr[j];
-//     j--;
-//     j = insertionSortRecursive1(j, k);
-//   }
-//   return j;
 // }
 
 //Selection sort algorithm
@@ -335,19 +340,19 @@ function selectionSort(time){
   for (let i = 0; i < n - 1; i++){
     setTimeout(function(){
       data.children[i].style.backgroundColor = '#4169E1';
-    }, totalTime + time);
+    }, totalTime);
     let min = i;
     for (let j = i + 1; j < n; j++){
-      totalTime += time;
       if (arr[j] < arr[min]){
         min = j;
       }
       setTimeout(function(){
         data.children[j].style.backgroundColor = 'crimson';
       }, totalTime);
+      totalTime += time;
       setTimeout(function(){
         data.children[j].style.backgroundColor = 'black';
-      }, totalTime + time);
+      }, totalTime);
     }
     let temp = arr[min];
     arr[min] = arr[i];
@@ -356,7 +361,7 @@ function selectionSort(time){
       data.children[i].style.backgroundColor = 'black';
       data.children[i].style.height = getNewValue(arr[i]) + '%';
       data.children[min].style.height = getNewValue(arr[min]) + '%';
-    }, totalTime + time);
+    }, totalTime);
   }
 }
 
