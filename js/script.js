@@ -300,37 +300,6 @@ function insertionSort(time){
   }
 }
 
-//Selection sort algorithm
-function selectionSort(time){
-  const n = arr.length;
-  for (let i = 0; i < n - 1; i++){
-    setTimeout(function(){
-      data.children[i].style.backgroundColor = '#4169E1';
-    }, totalTime);
-    let min = i;
-    for (let j = i + 1; j < n; j++){
-      totalTime += time;
-      if (arr[j] < arr[min]){
-        min = j;
-      }
-      setTimeout(function(){
-        data.children[j].style.backgroundColor = 'crimson';
-      }, totalTime);
-      setTimeout(function(){
-        data.children[j].style.backgroundColor = 'black';
-      }, totalTime + time);
-    }
-    setTimeout(function(){
-      data.children[i].style.backgroundColor = 'black';
-    }, totalTime + time);
-    let temp = arr[min];
-    arr[min] = arr[i];
-    arr[i] = temp;
-    data.children[i].style.height = getNewValue(arr[i]) + '%';
-    data.children[min].style.height = getNewValue(arr[min]) + '%';
-  }
-}
-
 // var i = 1;
 // function insertionSortRecursive(time){
 //   const n = arr.length;
@@ -352,6 +321,37 @@ function selectionSort(time){
 //   }
 //   return j;
 // }
+
+//Selection sort algorithm
+function selectionSort(time){
+  const n = arr.length;
+  for (let i = 0; i < n - 1; i++){
+    setTimeout(function(){
+      data.children[i].style.backgroundColor = '#4169E1';
+    }, totalTime);
+    let min = i;
+    for (let j = i + 1; j < n; j++){
+      totalTime += time;
+      if (arr[j] < arr[min]){
+        min = j;
+      }
+      setTimeout(function(){
+        data.children[j].style.backgroundColor = 'crimson';
+      }, totalTime);
+      setTimeout(function(){
+        data.children[j].style.backgroundColor = 'black';
+      }, totalTime + time);
+    }
+    let temp = arr[min];
+    arr[min] = arr[i];
+    arr[i] = temp;
+    setTimeout(function(){
+      data.children[i].style.backgroundColor = 'black';
+      data.children[i].style.height = getNewValue(arr[i]) + '%';
+      data.children[min].style.height = getNewValue(arr[min]) + '%';
+    }, totalTime + time);
+  }
+}
 
 //Function to enable/disable all buttons for sorting to take place
 function enableButtons(enable){
