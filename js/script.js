@@ -291,11 +291,18 @@ function insertionSort(time){
   const n = arr.length;
   for (let i = 1; i < n; i++){
     for (let j = i - 1; j >= 0 && arr[j] > arr[j+1]; j--){
+      totalTime += time;
+      setTimeout(function(){
+        data.children[j].style.backgroundColor = 'crimson';
+      }, totalTime);
+      setTimeout(function(){
+        data.children[j].style.backgroundColor = 'black';
+      }, totalTime + time);
+      // data.children[j].style.height = getNewValue(arr[j+1]) + '%';
+      // data.children[j+1].style.height = getNewValue(arr[j]) + '%';
       let temp = arr[j];
       arr[j] = arr[j+1];
       arr[j+1] = temp;
-      data.children[j].style.height = getNewValue(arr[j]) + '%';
-      data.children[j+1].style.height = getNewValue(arr[j+1]) + '%';
     }
   }
 }
@@ -328,7 +335,7 @@ function selectionSort(time){
   for (let i = 0; i < n - 1; i++){
     setTimeout(function(){
       data.children[i].style.backgroundColor = '#4169E1';
-    }, totalTime);
+    }, totalTime + time);
     let min = i;
     for (let j = i + 1; j < n; j++){
       totalTime += time;
