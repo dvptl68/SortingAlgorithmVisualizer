@@ -243,6 +243,15 @@ function sortCall(){
   }else if (selectedButton === 'select'){
     selectionSort(time);
   }else if (selectedButton === 'quick'){
+    if (arr.length <= 30){
+      if (arr.length === 10){
+        time = 500;
+      }else{
+        time = 200;
+      }
+    }else{
+      time = 50 - getNewValue(arr.length, 10, 300, 10, 40);
+    }
     quickSort(time, 0, arr.length - 1);
   }
   //Adds a verification visualization after sorting is complete
@@ -353,19 +362,22 @@ function selectUpdate(i, min, iVal, minVal, totalTime){
 //Quick sort algorithm
 function quickSortPartition(time, start, end){
   let pivot = arr[end];
-  let i = start - 1;
+  let i = start;
   for (let j = start; j < end; j++){
     if (arr[j] < pivot){
-      i++;
+      totalTime += time;
       let temp = arr[i];
       arr[i] = arr[j];
       arr[j] = temp;
+      quickUpdate(i, j, arr[i], arr[j], totalTime);
+      i++;
     }
   }
-  let temp = arr[i+1];
-  arr[i+1] = arr[end];
+  let temp = arr[i];
+  arr[i] = arr[end];
   arr[end] = temp;
-  return i + 1;
+  quickUpdate(i, end, arr[i], arr[end], totalTime);
+  return i;
 }
 
 function quickSort(time, start, end){
@@ -374,6 +386,13 @@ function quickSort(time, start, end){
     quickSort(time, start, p - 1);
     quickSort(time, p + 1, end);
   }
+}
+
+function quickUpdate(i, j, iVal, jVal, totalTime){
+  setTimeout(function(){
+    data.children[i].style.height = getNewValue(iVal) + '%';
+    data.children[j].style.height = getNewValue(jVal) + '%';
+  }, totalTime);
 }
 
 //Function to enable/disable all buttons for sorting to take place
