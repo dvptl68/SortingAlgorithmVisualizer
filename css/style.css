@@ -121,13 +121,10 @@ body {
   bottom: 100px;
   left: 50%;
   transform: translateX(-50%);
-  transition: all 1s linear;
+  transition: opacity 1s linear;
   height: 60%;
   width: 80%;
   opacity: 0%;
-  border-width: 5px;
-  border-style: solid;
-  border-color: white;
 }
 
 .bottom-banner {

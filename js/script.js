@@ -65,6 +65,8 @@ function updateData(){
     c.style.width = widthPercent + '%';
     c.style.height = heightPercent + '%';
     c.style.display = 'inline-block';
+    c.style.verticalAlign = 'top';
+    data.style.transform = 'rotateX(180deg) translateX(-50%)';
     addBarLines(c);
     data.appendChild(c);
   }
@@ -244,23 +246,23 @@ function sortCall(){
   }else if (selectedButton === 'quick'){
     if (arr.length <= 30){
       if (arr.length === 10){
-        time = 300;
-      }else{
-        time = 150;
-      }
-    }else{
-      time = 45 - getNewValue(arr.length, 10, 300, 5, 40);
-    }
-    quickSort(time, 0, arr.length - 1);
-  }else if(selectedButton === 'merge'){
-    if (arr.length <= 30){
-      if (arr.length === 10){
         time = 500;
       }else{
         time = 200;
       }
     }else{
       time = 50 - getNewValue(arr.length, 10, 300, 10, 40);
+    }
+    quickSort(time, 0, arr.length - 1);
+  }else if(selectedButton === 'merge'){
+    if (arr.length <= 30){
+      if (arr.length === 10){
+        time = 300;
+      }else{
+        time = 150;
+      }
+    }else{
+      time = 45 - getNewValue(arr.length, 10, 300, 5, 40);
     }
     mergeSort(time, 0, arr.length - 1);
   }
@@ -504,6 +506,9 @@ function mergeUpdate(k, kVal, totalTime, time){
     data.children[k].style.height = getNewValue(kVal) + '%';
   }, totalTime);
 }
+
+//Heap sort algorithm
+
 
 //Function to enable/disable all buttons for sorting to take place
 function enableButtons(enable){
