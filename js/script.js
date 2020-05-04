@@ -511,18 +511,42 @@ function mergeUpdate(k, kVal, totalTime){
 //Heap sort algorithm
 function heapSortHeapify(time, n, i){
   let root = i;
+  setTimeout(function(){
+    data.children[root].style.backgroundColor = 'crimson';
+  }, totalTime);
+  totalTime += time;
   let left = (2 * i) + 1;
   let right = (2 * i) + 2;
   if (left < n && arr[left] > arr[root]){
+    setTimeout(function(){
+      data.children[root].style.backgroundColor = 'black';
+    }, totalTime);
     root = left;
+    setTimeout(function(){
+      data.children[root].style.backgroundColor = 'crimson';
+    }, totalTime);
+    totalTime += time;
   }
   if (right < n && arr[right] > arr[root]){
+    setTimeout(function(){
+      data.children[root].style.backgroundColor = 'black';
+    }, totalTime);
     root = right;
+    setTimeout(function(){
+      data.children[root].style.backgroundColor = 'crimson';
+    }, totalTime);
+    totalTime += time;
   }
+  setTimeout(function(){
+    data.children[root].style.backgroundColor = 'black';
+  }, totalTime);
   if (root != i){
     let temp = arr[i];
     arr[i] = arr[root];
     arr[root] = temp;
+    totalTime += time;
+    updateHeap(i, arr[i], totalTime);
+    updateHeap(root, arr[root], totalTime);
     heapSortHeapify(time, n, root);
   }
 }
@@ -536,8 +560,23 @@ function heapSort(time){
     let temp = arr[0];
     arr[0] = arr[i];
     arr[i] = temp;
+    updateHeap(i, arr[i], totalTime);
+    setTimeout(function(){
+      data.children[i].style.backgroundColor = '#4169E1';
+    }, totalTime);
+    totalTime += time;
     heapSortHeapify(time, i, 0);
+    setTimeout(function(){
+      data.children[i].style.backgroundColor = 'black';
+    }, totalTime);
   }
+  updateHeap(0, arr[0], totalTime);
+}
+
+function updateHeap(i, iVal, totalTime){
+  setTimeout(function(){
+    data.children[i].style.height = getNewValue(iVal) + '%';
+  }, totalTime);
 }
 
 //Function to enable/disable all buttons for sorting to take place
