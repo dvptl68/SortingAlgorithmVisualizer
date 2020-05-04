@@ -265,6 +265,8 @@ function sortCall(){
       time = 45 - getNewValue(arr.length, 10, 300, 5, 40);
     }
     mergeSort(time, 0, arr.length - 1);
+  }else if (selectedButton === 'heap'){
+    heapSort(time);
   }
   //Adds a verification visualization after sorting is complete
   time = 2000 / arr.length;
@@ -500,15 +502,43 @@ function mergeSort(time, start, end){
   }
 }
 
-function mergeUpdate(k, kVal, totalTime, time){
+function mergeUpdate(k, kVal, totalTime){
   setTimeout(function(){
-    data.children[k].style.height = '0%';
     data.children[k].style.height = getNewValue(kVal) + '%';
   }, totalTime);
 }
 
 //Heap sort algorithm
+function heapSortHeapify(time, n, i){
+  let root = i;
+  let left = (2 * i) + 1;
+  let right = (2 * i) + 2;
+  if (left < n && arr[left] > arr[root]){
+    root = left;
+  }
+  if (right < n && arr[right] > arr[root]){
+    root = right;
+  }
+  if (root != i){
+    let temp = arr[i];
+    arr[i] = arr[root];
+    arr[root] = temp;
+    heapSortHeapify(time, n, root);
+  }
+}
 
+function heapSort(time){
+  const n = arr.length;
+  for (let i = Math.floor((n / 2) - 1); i >= 0; i--){
+    heapSortHeapify(time, n, i);
+  }
+  for (let i = n - 1; i > 0; i--){
+    let temp = arr[0];
+    arr[0] = arr[i];
+    arr[i] = temp;
+    heapSortHeapify(time, i, 0);
+  }
+}
 
 //Function to enable/disable all buttons for sorting to take place
 function enableButtons(enable){
