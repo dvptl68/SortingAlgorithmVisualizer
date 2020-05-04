@@ -301,12 +301,21 @@ function bubbleSort(time){
 function insertionSort(time){
   const n = arr.length;
   for (let i = 1; i < n; i++){
+    let tempTime = totalTime;
+    setTimeout(function(){
+      data.children[i].style.backgroundColor = 'crimson';
+    }, tempTime);
+    totalTime += time;
+    tempTime = totalTime;
+    setTimeout(function(){
+      data.children[i].style.backgroundColor = 'black';
+    }, tempTime);
     for (let j = i - 1; j >= 0 && arr[j] > arr[j+1]; j--){
-      totalTime += time;
       let temp = arr[j];
       arr[j] = arr[j+1];
       arr[j+1] = temp;
       insertUpdate(j, arr[j], arr[j+1], totalTime, time);
+      totalTime += time;
     }
   }
 }
