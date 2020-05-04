@@ -371,20 +371,38 @@ function selectUpdate(i, min, iVal, minVal, totalTime){
 //Quick sort algorithm
 function quickSortPartition(time, start, end){
   let pivot = arr[end];
+  setTimeout(function(){
+    data.children[end].style.backgroundColor = 'blue';
+  }, totalTime);
   let i = start;
   for (let j = start; j < end; j++){
+    setTimeout(function(){
+      data.children[j].style.backgroundColor = 'crimson';
+    }, totalTime);
     if (arr[j] < pivot){
+      setTimeout(function(){
+        data.children[i].style.backgroundColor = 'crimson';
+      }, totalTime);
       totalTime += time;
+      setTimeout(function(){
+        data.children[i].style.backgroundColor = 'black';
+      }, totalTime);
       let temp = arr[i];
       arr[i] = arr[j];
       arr[j] = temp;
       quickUpdate(i, j, arr[i], arr[j], totalTime);
       i++;
     }
+    setTimeout(function(){
+      data.children[j].style.backgroundColor = 'black';
+    }, totalTime);
   }
   let temp = arr[i];
   arr[i] = arr[end];
   arr[end] = temp;
+  setTimeout(function(){
+    data.children[end].style.backgroundColor = 'black';
+  }, totalTime);
   quickUpdate(i, end, arr[i], arr[end], totalTime);
   return i;
 }
