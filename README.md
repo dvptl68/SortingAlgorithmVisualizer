@@ -5,12 +5,12 @@ A website that can help visualize how the most popular and efficient sorting alg
 Select the sort method you'd like to see, use the slider to select the data set size, reverse or randomize the data, and sort! You can press ***t*** to toggle space between data bars (not recommended for large data sizes).
 
 ### Algorithms shown:
-- [Bubble sort](https://en.wikipedia.org/wiki/Bubble_sort) - Best case complexity: O(n<sup>2</sup>), Worst case complexity: O(n<sup>2</sup>)
-- [Insertion sort](https://en.wikipedia.org/wiki/Insertion_sort) - Best case complexity: O(n), Worst case complexity: O(n<sup>2</sup>)
-- [Selection sort](https://en.wikipedia.org/wiki/Selection_sort) - Best case complexity: O(n<sup>2</sup>), Worst case complexity: O(n<sup>2</sup>)
-- [Quick sort](https://en.wikipedia.org/wiki/Quicksort) - Best case complexity: O(nlog(n)), Worst case complexity: O(n<sup>2</sup>)
-- [Merge sort](https://en.wikipedia.org/wiki/Merge_sort) - Best case complexity: O(nlog(n)), Worst case complexity: O(nlog(n))
-- [Heap sort](https://en.wikipedia.org/wiki/Heapsort) - Best case complexity: O(nlog(n)), Worst case complexity: O(nlog(n))
+- [Bubble sort](https://en.wikipedia.org/wiki/Bubble_sort) - Best case complexity: **O(n<sup>2</sup>)**, Worst case complexity: **O(n<sup>2</sup>)**
+- [Insertion sort](https://en.wikipedia.org/wiki/Insertion_sort) - Best case complexity: **O(n)**, Worst case complexity: **O(n<sup>2</sup>)**
+- [Selection sort](https://en.wikipedia.org/wiki/Selection_sort) - Best case complexity: **O(n<sup>2</sup>)**, Worst case complexity: **O(n<sup>2</sup>)**
+- [Quick sort](https://en.wikipedia.org/wiki/Quicksort) - Best case complexity: **O(nlog(n))**, Worst case complexity: **O(n<sup>2</sup>)**
+- [Merge sort](https://en.wikipedia.org/wiki/Merge_sort) - Best case complexity: **O(nlog(n))**, Worst case complexity: **O(nlog(n))**
+- [Heap sort](https://en.wikipedia.org/wiki/Heapsort) - Best case complexity: **O(nlog(n))**, Worst case complexity: **O(nlog(n))**
 ######
 Because the last three listed sort methods are complex recursive algorithms, using small data sizes is not recommended for them. It can be confusing, and they can be better understood with large data sizes.
 
