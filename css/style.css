@@ -125,6 +125,9 @@ body {
   height: 60%;
   width: 80%;
   opacity: 0%;
+  border-width: 5px;
+  border-style: solid;
+  border-color: white;
 }
 
 .bottom-banner {

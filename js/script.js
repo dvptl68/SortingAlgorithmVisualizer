@@ -244,6 +244,17 @@ function sortCall(){
   }else if (selectedButton === 'quick'){
     if (arr.length <= 30){
       if (arr.length === 10){
+        time = 300;
+      }else{
+        time = 150;
+      }
+    }else{
+      time = 45 - getNewValue(arr.length, 10, 300, 5, 40);
+    }
+    quickSort(time, 0, arr.length - 1);
+  }else if(selectedButton === 'merge'){
+    if (arr.length <= 30){
+      if (arr.length === 10){
         time = 500;
       }else{
         time = 200;
@@ -251,8 +262,6 @@ function sortCall(){
     }else{
       time = 50 - getNewValue(arr.length, 10, 300, 10, 40);
     }
-    quickSort(time, 0, arr.length - 1);
-  }else if(selectedButton === 'merge'){
     mergeSort(time, 0, arr.length - 1);
   }
   //Adds a verification visualization after sorting is complete
@@ -461,13 +470,7 @@ function mergeSortMerge(time, start, mid, end){
       r++;
     }
     mergeUpdate(k, arr[k], totalTime);
-    setTimeout(function(){
-      data.children[k].style.backgroundColor = '#4169E1';
-    }, totalTime);
     totalTime += time;
-    setTimeout(function(){
-      data.children[k].style.backgroundColor = 'black';
-    }, totalTime);
     k++;
   }
   while (l < sizeL){
@@ -495,8 +498,9 @@ function mergeSort(time, start, end){
   }
 }
 
-function mergeUpdate(k, kVal, totalTime){
+function mergeUpdate(k, kVal, totalTime, time){
   setTimeout(function(){
+    data.children[k].style.height = '0%';
     data.children[k].style.height = getNewValue(kVal) + '%';
   }, totalTime);
 }
