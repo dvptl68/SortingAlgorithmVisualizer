@@ -266,6 +266,15 @@ function sortCall(){
     }
     mergeSort(time, 0, arr.length - 1);
   }else if (selectedButton === 'heap'){
+    if (arr.length <= 30){
+      if (arr.length === 10){
+        time = 300;
+      }else{
+        time = 1500;
+      }
+    }else{
+      time = 35 - getNewValue(arr.length, 10, 300, 5, 30);
+    }
     heapSort(time);
   }
   //Adds a verification visualization after sorting is complete
@@ -544,7 +553,15 @@ function heapSortHeapify(time, n, i){
     let temp = arr[i];
     arr[i] = arr[root];
     arr[root] = temp;
+    setTimeout(function(){
+      data.children[i].style.backgroundColor = 'crimson';
+      data.children[root].style.backgroundColor = 'crimson';
+    }, totalTime);
     totalTime += time;
+    setTimeout(function(){
+      data.children[i].style.backgroundColor = 'black';
+      data.children[root].style.backgroundColor = 'black';
+    }, totalTime);
     updateHeap(i, arr[i], totalTime);
     updateHeap(root, arr[root], totalTime);
     heapSortHeapify(time, n, root);
