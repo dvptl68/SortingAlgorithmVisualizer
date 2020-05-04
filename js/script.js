@@ -1,4 +1,3 @@
-
 //Changes the GitHub logo color scheme on mouse hover/unhover
 let g = document.getElementsByClassName('github')[0];
 
@@ -253,6 +252,8 @@ function sortCall(){
       time = 50 - getNewValue(arr.length, 10, 300, 10, 40);
     }
     quickSort(time, 0, arr.length - 1);
+  }else if(selectedButton === 'merge'){
+    mergeSort(time, 0, arr.length - 1);
   }
   //Adds a verification visualization after sorting is complete
   time = 2000 / arr.length;
@@ -372,7 +373,7 @@ function selectUpdate(i, min, iVal, minVal, totalTime){
 function quickSortPartition(time, start, end){
   let pivot = arr[end];
   setTimeout(function(){
-    data.children[end].style.backgroundColor = 'blue';
+    data.children[end].style.backgroundColor = '#4169E1';
   }, totalTime);
   let i = start;
   for (let j = start; j < end; j++){
@@ -419,6 +420,84 @@ function quickUpdate(i, j, iVal, jVal, totalTime){
   setTimeout(function(){
     data.children[i].style.height = getNewValue(iVal) + '%';
     data.children[j].style.height = getNewValue(jVal) + '%';
+  }, totalTime);
+}
+
+//Merge sort algorithm
+function mergeSortMerge(time, start, mid, end){
+  let sizeL = mid - start + 1;
+  let sizeR = end - mid;
+  let left = [];
+  let right = [];
+  for (let i = 0; i < Math.max(sizeL, sizeR); i++){
+    if (i < sizeL){
+      left[i] = arr[start + i];
+      setTimeout(function(){
+        data.children[start + i].style.backgroundColor = 'crimson';
+      }, totalTime);
+      setTimeout(function(){
+        data.children[start + i].style.backgroundColor = 'black';
+      }, totalTime + time);
+    }
+    if (i < sizeR){
+      right[i] = arr[mid + i + 1];
+      setTimeout(function(){
+        data.children[mid + i + 1].style.backgroundColor = 'crimson';
+      }, totalTime);
+      setTimeout(function(){
+        data.children[mid + i + 1].style.backgroundColor = 'black';
+      }, totalTime + time);
+    }
+    totalTime += time;
+  }
+  let l = 0, r = 0;
+  let k = start;
+  while (l < sizeL && r < sizeR){
+    if (left[l] <= right[r]){
+      arr[k] = left[l];
+      l++;
+    }else{
+      arr[k] = right[r];
+      r++;
+    }
+    mergeUpdate(k, arr[k], totalTime);
+    setTimeout(function(){
+      data.children[k].style.backgroundColor = '#4169E1';
+    }, totalTime);
+    totalTime += time;
+    setTimeout(function(){
+      data.children[k].style.backgroundColor = 'black';
+    }, totalTime);
+    k++;
+  }
+  while (l < sizeL){
+    arr[k] = left[l];
+    mergeUpdate(k, arr[k], totalTime);
+    totalTime += time;
+    l++;
+    k++;
+  }
+  while (r < sizeR){
+    arr[k] = right[r];
+    mergeUpdate(k, arr[k], totalTime);
+    totalTime += time;
+    r++;
+    k++;
+  }
+}
+
+function mergeSort(time, start, end){
+  if (start < end){
+    let mid = Math.floor((start + end) / 2);
+    mergeSort(time, start, mid);
+    mergeSort(time, mid + 1, end);
+    mergeSortMerge(time, start, mid, end);
+  }
+}
+
+function mergeUpdate(k, kVal, totalTime){
+  setTimeout(function(){
+    data.children[k].style.height = getNewValue(kVal) + '%';
   }, totalTime);
 }
 
