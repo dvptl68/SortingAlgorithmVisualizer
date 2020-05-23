@@ -30,4 +30,4 @@ I have not tested it on other browsers, so there is no guarantee that it will wo
 This website was completed using minimal HTML and CSS. Its functionality comes from JavaScript. The sort methods sort the data  with a delay after each iteration/recursive call so that the visualization doesn't happen too fast to see. Getting the algorithms to delay was tricky, but I found that I could use this built-in function: ```setTimeout(function(){ }, time);``` in order to delay the algorithm without messing with the data.
 
 ## Contribute:
-It is highly likely that this website has bugs that I missed, so if you find a bug, you can create an issue or fork this repository, fix the bug, and create a pull request!
+There may be bugs that I missed, so if you find a bug, you can create an issue or fork this repository, fix the bug, and create a pull request!
