@@ -221,11 +221,13 @@ let s = document.getElementsByClassName('sort')[0];
 s.addEventListener('click', sortCall);
 
 //Clears all set timers and randomizes the data
+let currentStartingID = 0;
 function resetSort(){
   const highestTimeoutId = setTimeout(";");
-  for (let i = 0 ; i < highestTimeoutId ; i++) {
+  for (let i = currentStartingID + 1 ; i < highestTimeoutId ; i++) {
     clearTimeout(i);
   }
+  currentStartingID = highestTimeoutId + 1;
   enableButtons(true);
   generateElements();
 }
