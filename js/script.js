@@ -226,6 +226,7 @@ function resetSort(){
   for (let i = 0 ; i < highestTimeoutId ; i++) {
     clearTimeout(i);
   }
+  enableButtons(true);
   generateElements();
 }
 
