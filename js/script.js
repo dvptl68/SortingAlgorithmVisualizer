@@ -233,9 +233,7 @@ function resetSort(){
 var totalTime = 0;
 function sortCall(){
   totalTime = 0;
-  s.removeEventListener('click', sortCall);
-  s.addEventListener('click', resetSort);
-  // enableButtons(false);
+  enableButtons(false);
   //Finds the pause time based on amount of data
   let time = 0;
   if (arr.length <= 30){
@@ -301,7 +299,7 @@ function sortCall(){
       data.children[i].style.transitionDuration = '1s';
       data.children[i].style.backgroundColor = 'black';
     }
-    // enableButtons(true);
+    enableButtons(true);
   }, totalTime + 500);
   setTimeout(function() { updateData(); }, totalTime + 1500);
 }
@@ -610,6 +608,8 @@ function updateHeap(i, iVal, totalTime){
 //Function to enable/disable all buttons for sorting to take place
 function enableButtons(enable){
   if (enable){
+    s.removeEventListener('click', resetSort);
+    s.addEventListener('click', sortCall);
     for (let i = 0; i < sortButtons.length; i++){
       sortButtons.item(i).disabled = false;
       sortButtons.item(i).style.opacity = '100%';
@@ -628,9 +628,12 @@ function enableButtons(enable){
       banner.children[i].addEventListener('mouseenter', hoverButtonBottom);
       banner.children[i].addEventListener('mouseleave', unhoverButtonBottom);
     }
+    s.innerText = 'Sort';
     banner.children[0].children[0].style.display = 'inline-block';
     document.addEventListener('keydown', addBarLines);
   }else{
+    s.removeEventListener('click', sortCall);
+    s.addEventListener('click', resetSort);
     for (let i = 0; i < sortButtons.length; i++){
       sortButtons.item(i).disabled = true;
       sortButtons.item(i).style.opacity = '50%';
@@ -639,14 +642,17 @@ function enableButtons(enable){
       sortButtons.item(i).removeEventListener('mouseleave', unhoverButton);
     }
     for (let i = 1; i < banner.children.length; i++){
-      banner.children[i].disabled = true;
-      banner.children[i].style.opacity = '50%';
-      banner.children[i].style.cursor = 'default';
-      banner.children[i].style.color = 'crimson';
-      banner.children[i].style.backgroundColor = '#919DAA';
-      banner.children[i].removeEventListener('mouseenter', hoverButtonBottom);
-      banner.children[i].removeEventListener('mouseleave', unhoverButtonBottom);
+      if (banner.children[i].innerText !== 'Sort'){
+        banner.children[i].disabled = true;
+        banner.children[i].style.opacity = '50%';
+        banner.children[i].style.cursor = 'default';
+        banner.children[i].style.color = 'crimson';
+        banner.children[i].style.backgroundColor = '#919DAA';
+        banner.children[i].removeEventListener('mouseenter', hoverButtonBottom);
+        banner.children[i].removeEventListener('mouseleave', unhoverButtonBottom);
+      }
     }
+    s.innerText = 'Stop';
     banner.children[0].children[0].style.display = 'none';
     document.removeEventListener('keydown', addBarLines);
   }
