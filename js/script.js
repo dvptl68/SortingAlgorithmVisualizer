@@ -220,11 +220,22 @@ reverse.addEventListener('click', generateReverse);
 let s = document.getElementsByClassName('sort')[0];
 s.addEventListener('click', sortCall);
 
+//Clears all set timers and randomizes the data
+function resetSort(){
+  const highestTimeoutId = setTimeout(";");
+  for (let i = 0 ; i < highestTimeoutId ; i++) {
+    clearTimeout(i);
+  }
+  generateElements();
+}
+
 //Selects the proper sort method based on which sort button is pressed
 var totalTime = 0;
 function sortCall(){
   totalTime = 0;
-  enableButtons(false);
+  s.removeEventListener('click', sortCall);
+  s.addEventListener('click', resetSort);
+  // enableButtons(false);
   //Finds the pause time based on amount of data
   let time = 0;
   if (arr.length <= 30){
@@ -290,7 +301,7 @@ function sortCall(){
       data.children[i].style.transitionDuration = '1s';
       data.children[i].style.backgroundColor = 'black';
     }
-    enableButtons(true);
+    // enableButtons(true);
   }, totalTime + 500);
   setTimeout(function() { updateData(); }, totalTime + 1500);
 }
