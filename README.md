@@ -1,5 +1,7 @@
 # [Sorting Algorithm Visualizer](https://dvptl68.github.io/SortingAlgorithmVisualizer.github.io/)
-A website that can help visualize how the most popular and efficient sorting algorithms work.
+A website that can help visualize how the most popular and efficient sorting algorithms work.  
+  
+https://dvptl68.github.io/SortingAlgorithmVisualizer.github.io/
 
 ## How to use it:
 Select the sort method you'd like to see, use the slider to select the data set size, reverse or randomize the data, and sort! You can press ***t*** to toggle space between data bars (not recommended for large data sizes).
