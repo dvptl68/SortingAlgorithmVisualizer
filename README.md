@@ -29,7 +29,7 @@ I have not tested it on other browsers, so there is no guarantee that it will wo
 ## How it works:
 This website was completed using minimal HTML and CSS. Its functionality comes from JavaScript. The sort methods sort the data  with a delay after each iteration/recursive call so that the visualization doesn't happen too fast to see. Getting the algorithms to delay was tricky, but I found that I could use the built-in function ```setTimeout(() => { }, time);``` in order to delay the algorithm without messing with the data.
 
-Adding a stop function was tricky. I found that I could clear all timeouts with their generated IDs to stop the sorting animation. This worked well with algorithms with efficient runtimes, such as the recursive ones. There was little to no delay between clicking the stop button and the animation stopping for these.
+Adding a stop function was tricky. I found that I could clear all timeouts using their generated IDs to stop the sorting animation. This works well with algorithms with efficient runtimes, such as the recursive ones. There is little to no delay between clicking the stop button and the animation stopping for these. However, there is a noticeable delay, sometimes over one second, with the less efficient algorithms. This is because these algorithms take signifcantly more steps in order to complete the same amount of sorting. I was unable to find a way to fix this without completely restructuring the sorting algorithm code.
 
 ## Contribute:
 There may be bugs that I missed, so if you find a bug, you can create an issue or fork this repository, fix the bug, and create a pull request!
