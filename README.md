@@ -1,4 +1,4 @@
-# [Sorting Algorithm Visualizer](https://dvptl68.github.io/sorting-algorithm-visualizer.github.io/)
+# [Sorting Algorithm Visualizer](https://dvptl68.github.io/sorting-algorithm-visualizer.github.io/) :bar_chart:
 A website that can help visualize how the most popular and efficient sorting algorithms work.  
 
 ## How to use it:
